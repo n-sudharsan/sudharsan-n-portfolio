@@ -34,6 +34,7 @@
 (function(){
   const sections = Array.from(document.querySelectorAll('section[id]'));
   const navAnchors = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  const header = document.querySelector('header.site-header');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(e.isIntersecting) e.target.classList.add('visible');
@@ -46,6 +47,10 @@
     let current = null;
     sections.forEach(sec => { if(sec.offsetTop <= scrollPos) current = sec.id; });
     navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+current));
+    // Header shrink
+    if(header){
+      if(window.scrollY > 60) header.classList.add('shrink'); else header.classList.remove('shrink');
+    }
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();

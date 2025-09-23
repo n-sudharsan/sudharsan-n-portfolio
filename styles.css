@@ -71,7 +71,11 @@ header.site-header .brand-badge{transition:transform .35s ease;}
 /* Hero Name (restored gradient version) */
 .hero-name{font-size:clamp(2rem,4.4vw,2.85rem);font-weight:680;letter-spacing:.35px;line-height:1.05;--hn-grad-dark:linear-gradient(120deg,#ffffff 0%,#ffd1d3 12%,#ff505c 48%,#c2131f 78%,#5b0a11 100%);background:var(--hn-grad-dark);background-clip:text;-webkit-background-clip:text;color:transparent;margin:.3rem 0 .35rem;text-shadow:0 3px 18px rgba(255,46,58,.28),0 2px 4px rgba(0,0,0,.65);} 
 /* Light mode adjustment: reduce pale wash & deepen mid tones for legibility */
-body.light .hero-name{--hn-grad-light:linear-gradient(120deg,#212325 0%,#301016 18%,#8e1620 46%,#ff2e3a 70%,#ff5a63 86%,#ffb1b5 98%);background:var(--hn-grad-light);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 1px 2px rgba(255,255,255,.55),0 0 10px rgba(255,46,58,.14);} 
+body.light .hero-name{--hn-grad-light:linear-gradient(118deg,#4a0d14 0%,#661017 18%,#8f151e 38%,#b91823 56%,#dd1d2a 72%,#ff2e3a 86%,#ff454f 94%);background:var(--hn-grad-light);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 1px 2px rgba(255,255,255,.55),0 0 5px rgba(255,46,58,.18);} 
+/* Optional crisp edge for some browsers to further enhance legibility */
+@supports (-webkit-text-stroke:1px transparent){
+  body.light .hero-name{-webkit-text-stroke:0.4px rgba(0,0,0,.18);}
+}
 @media (prefers-contrast: more){
   .hero-name{text-shadow:0 0 0 transparent,0 0 2px rgba(0,0,0,.55);} 
   body.light .hero-name{text-shadow:0 0 2px rgba(255,255,255,.7);} 

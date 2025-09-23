@@ -182,3 +182,75 @@ window.addEventListener('load', () => {
 
 // (Removed impact toggle logic after redesign to unified chronological list)
 
+// Lazy-load Contact Form (progressive reveal)
+(function(){
+  const placeholder = document.getElementById('lazy-contact-placeholder');
+  const tpl = document.getElementById('contact-form-template');
+  if(!placeholder || !tpl) return;
+
+  let loaded = false;
+  function loadForm(){
+    if(loaded) return; loaded = true;
+    const frag = tpl.content.cloneNode(true);
+    placeholder.replaceWith(frag);
+    // Re-run contact form binding
+    initContactForm();
+  }
+
+  // Click / keyboard activation
+  placeholder.addEventListener('click', loadForm);
+  placeholder.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadForm(); } });
+
+  // Intersection trigger (when ~30% visible)
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(ent => { if(ent.isIntersecting){ loadForm(); io.disconnect(); } });
+  },{threshold:0.3});
+  io.observe(placeholder);
+})();
+
+// Extracted contact form logic into reusable function so we can call post lazy-load
+function initContactForm(){
+  const form = document.getElementById('contact-form');
+  if(!form) return;
+  const statusEl = document.getElementById('form-status');
+  function setStatus(msg, type){ if(statusEl){ statusEl.textContent = msg; statusEl.className = 'form-status ' + (type||''); } }
+  if(form._bound) return; // prevent duplicate listeners
+  form._bound = true;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    setStatus('Sending...', '');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if(submitBtn){ submitBtn.disabled = true; submitBtn.classList.add('is-loading'); }
+    const required = ['cf-name','cf-email','cf-message'];
+    let invalid = false;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if(el && !el.value.trim()){ invalid = true; el.classList.add('field-error'); } else if(el){ el.classList.remove('field-error'); }
+    });
+    if(invalid){
+      setStatus('Please fill in required fields.', 'error');
+      if(submitBtn){ submitBtn.disabled = false; submitBtn.classList.remove('is-loading'); }
+      return;
+    }
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, { method: form.method, body: data, headers:{'Accept':'application/json'} });
+      if(res.ok){
+        form.reset();
+        setStatus('Message sent! I will get back to you soon.', 'success');
+        form.classList.add('form-success');
+        setTimeout(()=>form.classList.remove('form-success'), 1400);
+      } else {
+        const json = await res.json().catch(()=>null);
+        setStatus(json && json.error ? json.error : 'Something went wrong. Please try again later.', 'error');
+      }
+    } catch(err){
+      setStatus('Network error. Please retry.', 'error');
+    }
+    if(submitBtn){ submitBtn.disabled = false; submitBtn.classList.remove('is-loading'); }
+  });
+}
+
+// Initialize immediately if form is already present (non-lazy path / no JS modifications)
+initContactForm();
+

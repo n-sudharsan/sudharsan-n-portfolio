@@ -75,12 +75,30 @@
     <section id="experience" class="fade-in" aria-labelledby="exp-title">
       <h2 class="section-title" id="exp-title">Experience</h2>
       <div class="experience-list" role="list">
+        <!-- Promoted Role -->
+        <article class="exp-item" role="listitem" aria-labelledby="exp-senior-role">
+          <header class="exp-header">
+            <div class="exp-header-main">
+              <h3 id="exp-senior-role" class="exp-title">Cloud DevOps Engineer II</h3>
+              <div class="exp-company">HP Inc R&D <span class="exp-sep" aria-hidden="true">•</span> Nov 2025 – Present <span class="exp-sep" aria-hidden="true">•</span> Bangalore, India</div>
+            </div>
+          </header>
+          <p class="exp-summary">Promoted role focusing on API gateway architecture and platform integration for AI services.</p>
+          <ul class="exp-points">
+            <li>Building the Global AI Gateway for the HPIP AI Platform using KrakenD, integrating cloud-hosted AI models with secure, config-driven auth validation.</li>
+            <li>Developing and extending custom KrakenD plugins to enhance request processing, security enforcement, and scalable API orchestration across the platform.</li>
+          </ul>
+          <ul class="exp-tags" aria-label="Technologies">
+            <li>KrakenD</li><li>API Gateway</li><li>Golang</li><li>Authentication</li><li>Scalability</li><li>AI Integration</li>
+          </ul>
+        </article>
+
         <!-- Full-Time Role -->
         <article class="exp-item" role="listitem" aria-labelledby="exp-ft-role">
           <header class="exp-header">
             <div class="exp-header-main">
-              <h3 id="exp-ft-role" class="exp-title">Cloud DevOps Engineer</h3>
-              <div class="exp-company">HP Inc R&D <span class="exp-sep" aria-hidden="true">•</span> 2022 – Present</div>
+              <h3 id="exp-ft-role" class="exp-title">Cloud DevOps Engineer I</h3>
+              <div class="exp-company">HP Inc R&D <span class="exp-sep" aria-hidden="true">•</span> Jul 2022 – Nov 2025 <span class="exp-sep" aria-hidden="true">•</span> Bangalore, India</div>
             </div>
           </header>
           <p class="exp-summary">Designing and automating secure, scalable multi-cloud platform components (AWS / Azure) with a focus on reliability, efficiency and delivery velocity.</p>
@@ -104,7 +122,7 @@
           <header class="exp-header">
             <div class="exp-header-main">
               <h3 id="exp-int-role" class="exp-title">Cloud DevOps Intern</h3>
-              <div class="exp-company">HP Inc R&D <span class="exp-sep" aria-hidden="true">•</span> 2022</div>
+              <div class="exp-company">HP Inc R&D <span class="exp-sep" aria-hidden="true">•</span> Feb 2022 - Jun 2022 <span class="exp-sep" aria-hidden="true">•</span> Bangalore, India</div>
             </div>
           </header>
           <p class="exp-summary">Early contribution period focused on learning internal platform standards, deployment automation and scripting to remove toil.</p>
@@ -190,6 +208,11 @@
             <li class="skill-chip">Prompt Integration</li>
             <li class="skill-chip">Latency Optimisation</li>
             <li class="skill-chip">Secure Pipelines</li>
+            <li class="skill-chip">KrakenD</li>
+            <li class="skill-chip">API Gateway</li>
+            <li class="skill-chip">HPIP Authz</li>
+            <li class="skill-chip">Model Routing</li>
+            <li class="skill-chip">KrakenD Plugins</li>
           </ul>
         </div>
         <div class="skill-box">
@@ -220,6 +243,23 @@
       <h2 class="section-title" id="proj-title">Projects</h2>
       <div class="project-year-group" aria-label="Projects 2025 – 2024">
         <!-- Most recent first -->
+        <article class="project-card" aria-labelledby="proj-ai-gateway" itemscope itemtype="https://schema.org/SoftwareSourceCode">
+          <div class="project-head">
+            <h3 id="proj-ai-gateway" itemprop="name"><i class="fa fa-network-wired"></i> Global AI Gateway – Vendor-agnostic KrakenD</h3>
+            <div class="project-period" itemprop="dateCreated" content="2025-11">2025 – Present</div>
+          </div>
+          <p itemprop="description">Built a vendor-agnostic AI Gateway using KrakenD to centralize routing of cloud-hosted AI and traditional ML models through HPIP Authz, simplifying integrations and standardizing security across model providers.</p>
+          <ul class="project-impact">
+            <li>Enabled vendor-agnostic model routing: any cloud-hosted AI or ML model is accessible through a single gateway interface.</li>
+            <li>Implemented HPIP Authz integration for config-driven authorization, enforcing consistent access policies across models.</li>
+            <li>Developed custom KrakenD plugins (Golang) for auth validation, request enrichment and routing logic to support scalable orchestration.</li>
+            <li>Improved platform security and reduced integration effort for downstream teams via standardized gateway contracts.</li>
+          </ul>
+          <ul class="project-tags" itemprop="programmingLanguage"><li>KrakenD</li><li>API Gateway</li><li>HPIP Authz</li><li>Golang</li><li>AI Integration</li><li>Model Routing</li><li>Plugins</li></ul>
+          <meta itemprop="applicationCategory" content="Platform Engineering" />
+          <meta itemprop="runtimePlatform" content="Cloud (AI Gateway)" />
+        </article>
+
         <article class="project-card" aria-labelledby="proj-perfect-output" itemscope itemtype="https://schema.org/SoftwareSourceCode">
           <div class="project-head">
             <h3 id="proj-perfect-output" itemprop="name"><i class="fa fa-cogs"></i> PerfectOutput – AI Print Driver Initiative</h3>
